@@ -1,14 +1,17 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.11'
+gem 'bootstrap-sass', '~> 2.2.2.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+
+
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails'
-  gem 'capybara'
+  gem 'capybara', '1.1.2'
 end
 
 group :production do

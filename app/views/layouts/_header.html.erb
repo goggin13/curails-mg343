@@ -1,0 +1,26 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+
+      <%= link_to "MicroPoster", root_path, class: 'brand' %>
+
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+          <li><%= link_to 'Home', root_path %></li>
+          <li><%= link_to 'Help', static_pages_help_path %></li>
+          <li><%= link_to 'About', static_pages_about_path %></li>
+          <li><%= link_to 'My Profile', '#' %></li>
+          <li><%= link_to 'My Account', '#' %></li>
+          <li><%= link_to 'Logout', '#' %></li>
+        </ul>
+
+        <form class="navbar-form pull-right">
+          <input type="text" placeholder="Email" class="span2">
+          <input type="password" placeholder="Password" class="span2">
+          <button class="btn" type="submit">Sign in</button>
+        </form>
+
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
