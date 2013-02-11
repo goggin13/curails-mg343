@@ -1,0 +1,25 @@
+<h1>Listing micro_posts</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Content</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @micro_posts.each do |micro_post| %>
+  <tr>
+    <td><%= micro_post.user_id %></td>
+    <td><%= micro_post.content %></td>
+    <td><%= link_to 'Show', micro_post %></td>
+    <td><%= link_to 'Edit', edit_micro_post_path(micro_post) %></td>
+    <td><%= link_to 'Destroy', micro_post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Micro post', new_micro_post_path %>
