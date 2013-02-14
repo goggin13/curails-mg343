@@ -1,5 +1,13 @@
 <% provide(:title, 'Home') %>
-<h1>INFO 2310 MicroPoster</h1>
-<p>
-  Welcome to the INFO 2310 MicroPoster App.
-</p>
+<div class="hero-unit">
+  <h1>INFO 2310 MicroPoster</h1>
+  <p>
+    This is a sample website used in INFO 2310 to learn Ruby on Rails.  Please
+    sign up and share your thoughts with us in 5-140 character chunks.
+  </p>
+  
+  <p>
+    <%= link_to 'Sign Up', new_user_path, class: 'btn btn-primary btn-large' %>
+  </p>
+
+</div>
