@@ -10,11 +10,11 @@
           <li><%= link_to 'Help', static_pages_help_path %></li>
           <li><%= link_to 'About', static_pages_about_path %></li>
 		  <% if signed_in? %>
-            <li><%= link_to 'My Profile', user_path(current_user) %></li>
-            <li><%= link_to 'My Account', edit_user_path(current_user) %></li>
+			<li><%= link_to 'My Profile', user_path(current_user) %></li>
+			<li><%= link_to 'My Account', edit_user_path(current_user) %></li>
 			<li><%= link_to 'Logout', session_path(current_user), method: :delete %></li>
 		  <% else %>
-            <li><%= link_to 'Login', new_session_path %></li>
+			<li><%= link_to 'Login', new_session_path %></li>
 		  <% end %>
         </ul>
 
