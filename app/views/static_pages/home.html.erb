@@ -6,8 +6,10 @@
     sign up and share your thoughts with us in 5-140 character chunks.
   </p>
   
-  <p>
-    <%= link_to 'Sign Up', new_user_path, class: 'btn btn-primary btn-large' %>
-  </p>
+  <% unless signed_in? %>
+    <p>
+      <%= link_to 'Sign Up', new_user_path, class: 'btn btn-primary btn-large' %>
+    </p>
+  <% end %>
 
 </div>
