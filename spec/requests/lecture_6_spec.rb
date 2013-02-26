@@ -250,4 +250,33 @@ describe "lecture 6" do
       page.should have_selector('a', href: user_path(@user, page:2))
     end
   end
+
+  describe "paperclip" do
+
+    it "should include avatar in attr_accessible" do
+      lambda do
+        @user.update_attributes! avatar: nil
+      end.should_not raise_exception
+    end
+
+    it "should have the attached file on the user model" do
+      @user.should respond_to :avatar
+    end
+
+    it "should have a file field on the user edit form" do
+      user_login @user
+      visit edit_user_path(@user)
+      page.should have_css('input[name="user[avatar]"][type="file"]')
+    end 
+
+    it "should display a medium sized image on the user profile" do
+      visit user_path(@user)
+      page.should have_selector('img', src: @user.avatar.url(:medium))
+    end
+
+    it "should display an thumb sized image on the user index page" do
+      visit user_path(@user)
+      page.should have_selector('img', src: @user.avatar.url(:thumb))
+    end
+  end
 end
