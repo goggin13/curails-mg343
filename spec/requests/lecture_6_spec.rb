@@ -195,7 +195,7 @@ describe "lecture 6" do
   describe "paginating users" do
     
     before do
-      @users = (0..99).map do |i|
+      @users = (0..60).map do |i|
         User.create name: "user-#{i}",
                     email: "user-#{i}@example.com",
                     password: "foobar"
@@ -208,6 +208,7 @@ describe "lecture 6" do
       @users[0..28].each do |user|
         page.should have_content user.name
       end
+    page.should_not have_content @users[29].name
     end
     
     it "should display the second 30 users on page 2" do
@@ -215,39 +216,42 @@ describe "lecture 6" do
       @users[29..48].each do |user|
         page.should have_content user.name
       end
+	  page.should_not have_content @users[0].name
     end
 
     it "should have a link to the next page" do
       visit users_path
-      page.should have_selector('a', href: users_path(page:2))
+	  page.should have_css("a[href='#{users_path(page:2)}']")
     end
   end
 
   describe "paginating micro_posts" do
     
     before do
-      @micro_posts = (0..99).map do |i|
+      @micro_posts = (0..20).map do |i|
         @user.micro_posts.create! content: "hello world, #{i}"
       end
     end
 
     it "should display 30 micro_posts at a time" do
       visit user_path(@user)
-      @micro_posts[0..29].each do |post|
+      @micro_posts[0..9].each do |post|
         page.should have_content post.content
       end
+	  page.should_not have_content @micro_posts[10].content
     end
     
     it "should display the second 30 users on page 2" do
       visit user_path(@user, page: 2)
-      @micro_posts[30..48].each do |post|
+      @micro_posts[10..19].each do |post|
         page.should have_content post.content
       end
+	  page.should_not have_content @micro_posts[0].content
     end
 
     it "should have a link to the next page" do
       visit user_path(@user)
-      page.should have_selector('a', href: user_path(@user, page:2))
+	  page.should have_css("a[href='#{user_path(@user, page:2)}']")
     end
   end
 
