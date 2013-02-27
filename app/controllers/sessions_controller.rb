@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
-
+  before_filter :redirect_home_if_signed_in, only: [:new, :create]
+  
   def new
   end
 
@@ -16,6 +17,9 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    flash[:notice] = "Logged out #{current_user.email}"
+	sign_out_user
+	redirect_to root_path
   end
 
 end
