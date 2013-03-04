@@ -105,4 +105,31 @@ describe "lecture 7" do
       end
     end
   end
+
+  describe "deleting micro_posts" do
+    
+    before do
+      @micro_post = @user.micro_posts.create! content: 'hello world'
+    end
+
+    describe "anonymous" do
+
+      it "should not display the destroy link" do
+        visit root_path
+        page.should_not have_link "Destroy"
+      end
+    end
+
+    describe "authenticated" do
+      
+      before do
+        user_login @user
+        visit root_path
+      end
+
+      it "should display the destroy link" do
+        page.should have_css "a[data-remote='true'][data-method='delete']", text: 'Destroy'
+      end
+    end
+  end
 end
