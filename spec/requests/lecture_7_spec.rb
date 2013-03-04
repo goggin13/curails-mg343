@@ -124,11 +124,20 @@ describe "lecture 7" do
       
       before do
         user_login @user
-        visit root_path
       end
 
-      it "should display the destroy link" do
-        page.should have_css "a[data-remote='true'][data-method='delete']", text: 'Destroy'
+      it "should display the destroy link for only your micro_posts" do
+        visit root_path
+        page.should have_css "a[data-remote='true'][data-method='delete']"
+      end
+
+      it "should not display destroy links for other users micro_posts" do
+        user = User.create!(name: "Example User", 
+                            email: "user@example.com",
+                            password: "foobar")
+        user.micro_posts.create! content: "hello"
+        visit user_path(user)
+        page.should_not have_css "a[data-remote='true'][data-method='delete']"
       end
     end
   end
