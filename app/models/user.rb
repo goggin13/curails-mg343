@@ -33,4 +33,8 @@ class User < ActiveRecord::Base
     user = User.find_by_email(email)
     (user && user.has_password?(plain_text_password)) ? user : nil
   end
+
+  def feed(paginate_options={page: 1})
+    micro_posts.paginate(paginate_options)
+  end
 end
