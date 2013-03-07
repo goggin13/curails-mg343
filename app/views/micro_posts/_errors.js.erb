@@ -1,0 +1,9 @@
+var errors = $('<div class="alert alert-error"/>');
+
+<% @micro_post.errors.full_messages.each do |error| %>
+  errors.append('<p><%= j(error) %></p>');
+<% end %>
+
+// Display errors before the form
+$('#new_micro_post').prepend(errors);
+errors.fadeOut(3000);

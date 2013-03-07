@@ -1,5 +1,7 @@
 <h1>Listing users</h1>
 
+<%= will_paginate @users %>
+
 <table>
   <tr>
     <th>Name</th>
@@ -21,5 +23,7 @@
 </table>
 
 <br />
+
+<%= will_paginate @users %>
 
 <%= link_to 'New User', new_user_path %>
