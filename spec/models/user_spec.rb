@@ -194,5 +194,13 @@ describe User do
       mp2.save
       @user.feed.should == [mp1, mp2]
     end
+
+    it "should be paginated" do
+      mp1 = @user.micro_posts.create! content: "hello"
+      mp2 = @user.micro_posts.create! content: "hello"
+      mp2.created_at = Time.now.advance(:hours => -1) 
+      mp2.save
+      @user.feed(page: 2, per_page:1).should == [mp2]
+    end
   end
 end
