@@ -8,6 +8,10 @@
   <%= @user.email %>
 </p>
 
+<% if signed_in? %>
+ <%= render 'follow_form' %>
+<% end %>
+
 <p>
   <%= pluralize(@user.micro_posts.length, "MicroPost") %>
 </p>
