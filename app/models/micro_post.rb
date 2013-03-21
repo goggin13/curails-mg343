@@ -7,6 +7,22 @@ class MicroPost < ActiveRecord::Base
                       length: { minimum: 5, maximum: 140 }
 
   validates :user_id, presence: true
+
+  after_create :send_mentions_email
+
+  def mentions
+    results = []
+    content.scan(/@([^@]+)@/) do |name|
+      u = User.find_by_name(name)
+      results << u if u
+    end
+
+    results
+  end
+
+  def send_mentions_email
+    mentions.each do |mentioned_user|
+      UserMailer.mentioned(self, mentioned_user).deliver
+    end
+  end
 end
-
-
