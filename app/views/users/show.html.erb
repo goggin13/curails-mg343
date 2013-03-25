@@ -16,6 +16,9 @@
   <%= pluralize(@user.micro_posts.length, "MicroPost") %>
 </p>
 
+
+<%= image_tag(@user.picture_url(:thumbnail)) %>
+
 <%= will_paginate @micro_posts %>
 
 <%= render @micro_posts %>

@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   attr_accessor :password
-  attr_accessible :email, :name, :password
+  attr_accessible :email, :name, :password, :picture, :picture_cache, :remove_picture
   
   validates :password, presence: true, if: "hashed_password.blank?"
   
@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
   has_many :followed_users, through: :relationships, source: :followed
   
   before_save :encrypt_password
+
+  mount_uploader :picture, PictureUploader
                 
   def encrypt_password
     self.salt ||= Digest::SHA256.hexdigest("--#{Time.now.to_s}- -#{email}--")

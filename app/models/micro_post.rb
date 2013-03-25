@@ -12,7 +12,8 @@ class MicroPost < ActiveRecord::Base
 
   def mentions
     results = []
-    content.scan(/@([^@]+)@/) do |name|
+    content.scan(/@[^@]+@/) do |name|
+      name = name[1..name.length - 2]
       u = User.find_by_name(name)
       results << u if u
     end

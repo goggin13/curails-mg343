@@ -22,6 +22,20 @@
     <%= f.label :password %><br />
     <%= f.password_field :password %>
   </div>
+
+  <div class="field">
+    <% unless @user.picture.nil? %>
+      <%= image_tag(@user.picture_url(:thumbnail)) %><br/>
+    <% end %>
+
+    <%= f.hidden_field(:picture_cache) %>
+    <%= f.file_field(:picture) %>
+    <label>
+      <%= f.check_box :remove_picture %>
+      Remove avatar
+    </label>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
