@@ -17,7 +17,7 @@
 </p>
 
 
-<%= image_tag(@user.picture_url(:thumbnail)) %>
+<%= image_tag(@user.picture_url(:standard)) if @user.picture_url %>
 
 <%= will_paginate @micro_posts %>
 

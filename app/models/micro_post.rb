@@ -15,7 +15,7 @@ class MicroPost < ActiveRecord::Base
     content.scan(/@[^@]+@/) do |name|
       name = name[1..name.length - 2]
       u = User.find_by_name(name)
-      results << u if u
+      results << u if u && u != user
     end
 
     results

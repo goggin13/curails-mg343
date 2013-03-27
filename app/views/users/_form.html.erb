@@ -24,7 +24,7 @@
   </div>
 
   <div class="field">
-    <% unless @user.picture.nil? %>
+    <% unless @user.picture_url.nil? %>
       <%= image_tag(@user.picture_url(:thumbnail)) %><br/>
     <% end %>
 
